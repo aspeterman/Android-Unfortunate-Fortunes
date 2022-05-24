@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "198936443804",
+    "project_id": "unfortunate-fortunes-4633f",
+    "storage_bucket": "unfortunate-fortunes-4633f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198936443804:android:053ff8f0c0f95c468f6659",
+        "android_client_info": {
+          "package_name": "com.unfortunatefortunes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198936443804-c71cec7osqon5jsu8vi6us8u6tllhhmd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unfortunatefortunes",
+            "certificate_hash": "4a4148ab8a7560ea5eb522a88f1eed2d0122a089"
+          }
+        },
+        {
+          "client_id": "198936443804-jalgj79ucbke1tgi47fl9b6htc6b8mmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyIubcYc2a4C0wCmoATT-S7hA4NAMVLc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198936443804-jalgj79ucbke1tgi47fl9b6htc6b8mmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
