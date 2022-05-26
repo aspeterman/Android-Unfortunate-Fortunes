@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_main.xml" value="0.6666666666666666" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_main.xml" value="0.6059421422986708" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fortune_activity.xml" value="0.31422615945805105" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_fortune.xml" value="0.8247663551401869" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_logged_in.xml" value="0.5536458333333333" />
       </map>
     </option>
   </component>

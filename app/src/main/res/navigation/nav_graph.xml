@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/ChooserFragment"
-    android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/loginRegisterFragment">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.unfortunatefortunes.MainActivity"
-        android:label="MainActivity" />
+    <fragment
+        android:id="@+id/loginRegisterFragment"
+        android:name="com.unfortunatefortunes.ui.LoginRegisterFragment"
+        android:label="LoginRegisterFragment" >
+        <action
+            android:id="@+id/action_loginRegisterFragment_to_loggedInFragment"
+            app:destination="@id/loggedInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loggedInFragment"
+        android:name="com.unfortunatefortunes.ui.LoggedInFragment"
+        android:label="LoggedInFragment" >
+        <action
+            android:id="@+id/action_loggedInFragment_to_loginRegisterFragment"
+            app:destination="@id/loginRegisterFragment" />
+    </fragment>
 </navigation>

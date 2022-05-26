@@ -1,118 +1,97 @@
 package com.unfortunatefortunes.adapter
 
-import android.graphics.Color
-import android.util.Log
+import android.app.DatePickerDialog
+import android.text.Editable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView.*
-import com.bumptech.glide.Glide
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.codelab.friendlychat.MainActivity.Companion.ANONYMOUS
-import com.google.firebase.codelab.friendlychat.databinding.ImageMessageBinding
-import com.google.firebase.codelab.friendlychat.databinding.MessageBinding
-import com.google.firebase.codelab.friendlychat.model.FriendlyMessage
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.util.Util.getSnapshot
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
+import com.unfortunatefortunes.R
+import com.unfortunatefortunes.model.User
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.Calendar.*
 
-// The FirebaseRecyclerAdapter class and options come from the FirebaseUI library
-// See: https://github.com/firebase/FirebaseUI-Android
-class UserAdapter(
-    private val options: FirebaseRecyclerOptions<FriendlyMessage>,
-    private val currentUserName: String?
-) :
-    FirebaseRecyclerAdapter<FriendlyMessage, ViewHolder>(options) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        return if (viewType == VIEW_TYPE_TEXT) {
-            val view = inflater.inflate(R.layout.message, parent, false)
-            val binding = MessageBinding.bind(view)
-            MessageViewHolder(binding)
-        } else {
-            val view = inflater.inflate(R.layout.image_message, parent, false)
-            val binding = ImageMessageBinding.bind(view)
-            ImageMessageViewHolder(binding)
-        }
+
+class UserAdapter(query: Query) : FirestoreAdapter<UserAdapter.UserViewHolder>(query) {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAdapter.UserViewHolder {
+        return UserAdapter.UserViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.fragment_login, parent, false
+            )
+        )
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int, model: FriendlyMessage) {
-        if (options.snapshots[position].text != null) {
-            (holder as MessageViewHolder).bind(model)
-        } else {
-            (holder as ImageMessageViewHolder).bind(model)
-        }
+    override fun onBindViewHolder(holder: UserAdapter.UserViewHolder, position: Int) {
+        getSnapshot(position)?.let { snapshot -> holder.bind(snapshot) }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return if (options.snapshots[position].text != null) VIEW_TYPE_TEXT else VIEW_TYPE_IMAGE
-    }
-
-    inner class MessageViewHolder(private val binding: MessageBinding) : ViewHolder(binding.root) {
-        fun bind(item: FriendlyMessage) {
-            binding.messageTextView.text = item.text
-            setTextColor(item.name, binding.messageTextView)
-
-            binding.messengerTextView.text = if (item.name == null) ANONYMOUS else item.name
-            if (item.photoUrl != null) {
-                loadImageIntoView(binding.messengerImageView, item.photoUrl!!)
-            } else {
-                binding.messengerImageView.setImageResource(R.drawable.ic_account_circle_black_36dp)
-            }
-        }
-
-        private fun setTextColor(userName: String?, textView: TextView) {
-            if (userName != ANONYMOUS && currentUserName == userName && userName != null) {
-                textView.setBackgroundResource(R.drawable.rounded_message_blue)
-                textView.setTextColor(Color.WHITE)
-            } else {
-                textView.setBackgroundResource(R.drawable.rounded_message_gray)
-                textView.setTextColor(Color.BLACK)
-            }
-        }
-    }
-
-    inner class ImageMessageViewHolder(private val binding: ImageMessageBinding) :
-        ViewHolder(binding.root) {
-        fun bind(item: FriendlyMessage) {
-            loadImageIntoView(binding.messageImageView, item.imageUrl!!)
-
-            binding.messengerTextView.text = if (item.name == null) ANONYMOUS else item.name
-            if (item.photoUrl != null) {
-                loadImageIntoView(binding.messengerImageView, item.photoUrl!!)
-            } else {
-                binding.messengerImageView.setImageResource(R.drawable.ic_account_circle_black_36dp)
-            }
-        }
-    }
-
-    private fun loadImageIntoView(view: ImageView, url: String) {
-        if (url.startsWith("gs://")) {
-            val storageReference = Firebase.storage.getReferenceFromUrl(url)
-            storageReference.downloadUrl
-                .addOnSuccessListener { uri ->
-                    val downloadUrl = uri.toString()
-                    Glide.with(view.context)
-                        .load(downloadUrl)
-                        .into(view)
-                }
-                .addOnFailureListener { e ->
-                    Log.w(
-                        TAG,
-                        "Getting download url was not successful.",
-                        e
-                    )
-                }
-        } else {
-            Glide.with(view.context).load(url).into(view)
-        }
-    }
-
-    companion object {
-        const val TAG = "MessageAdapter"
-        const val VIEW_TYPE_TEXT = 1
-        const val VIEW_TYPE_IMAGE = 2
+    val button = findViewById<Button>(R.id.button1)
+    button.setOnClickListener {view->
+        printAge(view)
     }
 }
+
+private fun printAge(view:View){
+    var myCalendar = Calendar.getInstance()
+    var year=myCalendar.get(Calendar.YEAR)
+    var month=myCalendar.get(Calendar.MONTH)
+    var day=myCalendar.get(Calendar.DAY_OF_MONTH)
+
+    DatePickerDialog(this
+        , DatePickerDialog.OnDateSetListener{
+                view,year,month,day->
+
+            val selectedDate="$day/${month+1}/$year"
+
+            var textView1=findViewById<TextView>(R.id.textView1)
+            textView1.text= selectedDate
+
+
+
+            var dob=Calendar.getInstance()
+            dob.set(year,month,day)
+
+            var age= myCalendar.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+            if (myCalendar.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR))
+            {
+                age--
+            }
+
+            var textView2 = findViewById<TextView>(R.id.textView2)
+            textView2.text="You are $age year old"
+
+        }
+        ,year
+        ,month
+        ,day).show()
+}
+
+    class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val userEmailText: TextView = itemView.findViewById(R.id.fieldEmail)
+        private val userPasswordText: TextView = itemView.findViewById(R.id.fieldPassword)
+        private val userDOB: Editable = itemView.findViewById(R.id.textView2)
+        private val userGender: Spinner= itemView.findViewById(R.id.userGender)
+        fun bind(snapshot: DocumentSnapshot) {
+            val users: User? = snapshot.toObject(User::class.java)
+            userEmailText.text = users?.email
+            userPasswordText.text = users?.gender
+            userDOB = users?.userDOB
+            userGender.text = users?.userGender
+        }
+    }
+
+
+}
+

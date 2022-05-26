@@ -7,4 +7,10 @@
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_300">#E0E0E0</color>
     <color name="grey_500">#9E9E9E</color>
+    <color name="purple_200">#b366ff</color>
+    <color name="black">#000000</color>
+    <color name="teal_200">#66ffff</color>
+    <color name="purple_700">#8c66ff</color>
+
+
 </resources>
