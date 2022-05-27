@@ -1,5 +1,6 @@
 package com.unfortunatefortunes
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -13,37 +14,27 @@ import com.google.android.gms.common.api.internal.ActivityLifecycleObserver.of
 import com.google.android.gms.tasks.DuplicateTaskCompletionException.of
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.unfortunatefortunes.Extensions.toast
+import com.unfortunatefortunes.FirebaseUtils.firebaseAuth
+import com.unfortunatefortunes.adapter.FirestoreAdapter
 import com.unfortunatefortunes.adapter.FortuneAdapter
 import com.unfortunatefortunes.databinding.ActivityMainBinding
-import com.unfortunatefortunes.ui.LoginViewModel
-import com.unfortunatefortunes.ui.LoginViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.EnumSet.of
 
-class MainActivity : AppCompatActivity() {
 
-    private lateinit var adapter: FortuneAdapter
+    class HomeActivity : AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+// sign out a user
 
-        val query: Query = FirebaseFirestore.getInstance().collection("fortunes")
-
-        val recyclerView: RecyclerView = findViewById(R.id.item_fortune)
-        adapter = FortuneAdapter(query)
-        recyclerView.adapter = adapter
+            btnSignOut.setOnClickListener {
+                firebaseAuth.signOut()
+                startActivity(Intent(this, CreateAccountActivity::class.java))
+                toast("signed out")
+                finish()
+            }
+        }
     }
-
-
-
-
-    override fun onStart() {
-        super.onStart()
-        adapter.startListening()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        adapter.startListening()
-    }
-}

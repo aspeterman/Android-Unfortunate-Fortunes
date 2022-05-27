@@ -1,6 +1,7 @@
 package com.unfortunatefortunes.repository
 
 import com.google.android.gms.tasks.Task
+import com.google.common.io.ByteStreams.limit
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,19 +30,16 @@ class FortuneRepository {
 //        return documentReference.set(fortune)
 //    }
 
-    /**
-     * Returns Flow of [State] which retrieves all posts from cloud firestore collection.
-     */
     fun getAllFortunes() = flow<State<List<Fortune>>> {
 
         // Emit loading state
         emit(State.loading())
 
         val snapshot = mFortunesCollection.get().await()
-        val posts = snapshot.toObjects(Fortune::class.java)
+        val fortunes = snapshot.toObjects(Fortune::class.java)
 
         // Emit success state with data
-        emit(State.success(posts))
+        emit(State.success(fortunes))
 
     }.catch {
         // If exception is thrown, emit failed state along with message.

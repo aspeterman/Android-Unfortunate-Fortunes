@@ -1,23 +1,22 @@
 package com.unfortunatefortunes.ui
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.unfortunatefortunes.R
+import com.unfortunatefortunes.databinding.FragmentFortuneBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 
 class FortuneFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = FortuneFragment()
-    }
+    private val fortuneViewModel: FortuneViewModel? = null
 
-    private lateinit var viewModel: FortuneViewModel
+
+    private lateinit var binding: FragmentFortuneBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,10 +25,5 @@ class FortuneFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_fortune, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FortuneViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
