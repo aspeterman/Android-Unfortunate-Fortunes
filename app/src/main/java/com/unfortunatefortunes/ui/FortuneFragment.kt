@@ -1,5 +1,4 @@
-package com.c355_project.plannter
-
+package com.unfortunatefortunes.ui
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -18,6 +17,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.unfortunatefortunes.R
+import com.unfortunatefortunes.adapter.FortuneAdapter
 import com.unfortunatefortunes.databinding.FragmentFortuneBinding
 import com.unfortunatefortunes.ui.FortuneViewModel
 import java.text.ParseException
@@ -39,6 +39,7 @@ class FortuneFragment : Fragment(), View.OnClickListener {
 
     // Binding object instance with access to the views in the game_fragment.xml layout
     private lateinit var binding: FragmentFortuneBinding
+    private lateinit var adapter: FortuneAdapter
     //LIFECYCLE METHODS ================================================================================
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +54,7 @@ class FortuneFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//adapter.getAllFortunes()
 
         //Find GUI Elements
         fortuneText = view.findViewById(R.id.item_fortune_fortuneText_text_view)
@@ -65,27 +66,23 @@ class FortuneFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun onSubmitWord() {
-//        binding.itemFortuneFortuneTextTextView.text = viewModel.currentScrambledWord)
-    }
 
     //LISTENER METHODS =================================================================================
-//    override fun onClick(view: View) {
+    override fun onClick(view: View) {
 //        //Determines how to respond to the click
-//        when (view.id) {
-//
-//            R.id.btnGetFortune -> {
-//
-//                //Creates References To The User Input Boxes
-//                val fortuneText: TextView = Main_Window.findViewById(R.id.item_fortune_fortuneText_text_view)
-//                val genderText: TextView = Main_Window.findViewById(R.id.item_fortune_gender_text_view)
-//                val ratingText: TextView = Main_Window.findViewById(R.id.item_fortune_rating_text_view)
-//
-//
-//                //Update the Spring Frost Date on GUI
-//                SpringFrostDate = Main_Window.getLastSpringFrostDate()
-//                txtSpringFrost!!.text = dateFormat.format(SpringFrostDate)
-//            }
+        when (view.id) {
+
+            R.id.btnGetOne -> {
+//            adapter.getAllFortunes()
+                //Creates References To The User Input Boxes
+                val fortuneText: TextView =
+                    view.findViewById(R.id.item_fortune_fortuneText_text_view)
+                val genderText: TextView = view.findViewById(R.id.item_fortune_gender_text_view)
+                val ratingText: TextView = view.findViewById(R.id.item_fortune_rating_text_view)
+
+            }
+        }
+    }
 //            R.id.btnUpdateFall -> {
 //
 //                //Creates References To The User Input Boxes
@@ -143,9 +140,5 @@ class FortuneFragment : Fragment(), View.OnClickListener {
                 context!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
-    }
-
-    override fun onClick(v: View?) {
-        onSubmitWord()
     }
 }

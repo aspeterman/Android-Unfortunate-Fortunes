@@ -1,4 +1,4 @@
-//package com.unfortunatefortunes.adapter
+package com.unfortunatefortunes.adapter
 //
 //import android.app.DatePickerDialog
 //import android.text.Editable

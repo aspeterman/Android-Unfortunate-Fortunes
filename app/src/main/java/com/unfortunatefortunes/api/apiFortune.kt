@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.unfortunatefortunes.Constants
 import com.unfortunatefortunes.model.Fortune
 import io.reactivex.rxjava3.internal.subscriptions.SubscriptionHelper.cancel
 import kotlinx.coroutines.cancel
@@ -33,6 +34,17 @@ class apiFortune {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
+    }
+
+    fun getGood() {
+        val TAG = "MainActivity"
+        val docReference = db.collection(Constants.COLLECTION_FORTUNE)
+
+        docReference.whereEqualTo("rating", "GOOD").get().addOnSuccessListener {querySnapshot ->
+            for (doc in querySnapshot) {
+                Log.d(TAG, "id: ${doc.id} fortuneText: ${doc.data.getValue("fortuneText")}")
+            }
+        }
     }
 
 

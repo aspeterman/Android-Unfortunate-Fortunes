@@ -3,14 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_create_account.xml" value="0.9240246406570842" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_main.xml" value="0.5184866723989682" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_sign_in.xml" value="0.40143737166324434" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fortune_activity.xml" value="0.31422615945805105" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_base.xml" value="0.12" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_fortune.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_logged_in.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/framelayout.xml" value="0.2786458333333333" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/drawable/ic_baseline_add_50.xml" value="0.219" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_fortune.xml" value="0.279833246482543" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_main.xml" value="0.19468334636434714" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/activity_sign_in.xml" value="0.4024640657084189" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fortune_item.xml" value="0.1" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/fragment_fortune.xml" value="0.165" />
+        <entry key="..\:/Users/Austin/AndroidStudioProjects/mobile/UnfortunateFortunes/app/src/main/res/layout/item_fortune.xml" value="0.2786458333333333" />
       </map>
     </option>
   </component>
